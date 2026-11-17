@@ -1,0 +1,158 @@
+/* PTY Shopping · Inicio — Bento + Flat, tipografía Swiss (Inter)
+   Un solo acento (rojo de marca), tarjetas de 22 px, cuadrícula de 12 columnas, espacios en múltiplos de 8. */
+:root{
+  --bg:#F5F5F7; --card:#FFFFFF; --line:#E4E4E8; --line-2:#C7C7CC;
+  --ink:#1D1D1F; --ink-2:#5E5E63;
+  --accent:#D70015; --accent-ink:#FFFFFF; --accent-soft:#FDEBED; --accent-soft-ink:#8A0010;
+  --dark:#1D1D1F; --dark-ink:#F5F5F7; --dark-ink-2:#B5B5BA; --dark-line:rgba(255,255,255,.16);
+  --field:#F2F2F5; --focus:#0A66D9; --ok:#16794A;
+  --r:22px; --gap:16px;
+  --font:"Inter","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#000; --card:#1C1C1E; --line:#2C2C2E; --line-2:#48484A;
+  --ink:#F5F5F7; --ink-2:#A1A1A6;
+  --accent:#FF453A; --accent-ink:#000; --accent-soft:#3A1B1D; --accent-soft-ink:#FFB4AE;
+  --dark:#2C2C2E; --field:#2C2C2E; --focus:#4C9BFF; --ok:#32D74B; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--font);-webkit-font-smoothing:antialiased;touch-action:manipulation}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--card);padding:8px 12px;border-radius:8px;z-index:99}
+.skip:focus{left:8px}
+.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.num{font-variant-numeric:tabular-nums}
+
+/* Encabezado */
+.nav{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);position:sticky;top:0;z-index:30}
+.nav-in{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px;position:relative}
+.brand{font-weight:800;font-size:20px;letter-spacing:-.03em;text-decoration:none;margin-right:auto}
+.brand b{color:var(--accent);font-weight:800}
+.links{display:flex;gap:4px}
+.links a{text-decoration:none;font-weight:500;font-size:15px;padding:10px 14px;border-radius:12px;color:var(--ink-2);transition:background-color .2s,color .2s}
+.links a:hover{background:var(--card);color:var(--ink)}
+.links a[aria-current]{background:var(--card);color:var(--ink);font-weight:600;border:1px solid var(--line)}
+.menu-btn{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line-2);background:var(--card);color:var(--ink);place-items:center;cursor:pointer}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:12px;border:1px solid var(--accent);
+  background:var(--accent);color:var(--accent-ink);font:600 16px var(--font);text-decoration:none;cursor:pointer;transition:background-color .2s}
+.btn:hover{background:color-mix(in srgb,var(--accent) 88%,#000)}
+.btn.line{background:transparent;color:inherit;border-color:var(--line-2)}
+.btn.line:hover{background:var(--field)}
+.btn.block{display:flex;width:100%}
+.btn.sm{min-height:44px;padding:0 16px;font-size:15px}
+.btn .ic{width:18px;height:18px}
+
+/* Cuadrícula bento */
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);margin-bottom:var(--gap)}
+.bento:first-of-type{margin-top:16px}
+.c-3{grid-column:span 3}.c-4{grid-column:span 4}.c-5{grid-column:span 5}.c-6{grid-column:span 6}.c-7{grid-column:span 7}.c-12{grid-column:1/-1}
+.r-2{grid-row:span 2}
+
+/* Tarjetas */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:12px;min-width:0;color:var(--ink);text-decoration:none;transition:transform .2s,border-color .2s}
+a.card:hover{transform:translateY(-3px);border-color:var(--line-2)}
+.card.dark{background:var(--dark);color:var(--dark-ink);border-color:transparent}
+.card.dark .muted{color:var(--dark-ink-2)}
+.card.soft{background:var(--accent-soft);border-color:transparent}
+.card.soft .muted{color:var(--accent-soft-ink)}
+.card.accent{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.card.accent .muted{color:var(--accent-ink);opacity:.9}
+.card h2{font-size:24px;line-height:1.2;letter-spacing:-.02em;font-weight:700}
+.card h3{font-size:20px;line-height:1.25;letter-spacing:-.015em;font-weight:700}
+.muted{color:var(--ink-2)}
+.ico{width:48px;height:48px;border-radius:14px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none}
+.card.dark .ico{background:rgba(255,255,255,.12);color:#fff}
+.card.accent .ico{background:rgba(255,255,255,.2);color:#fff}
+.card.soft .ico{background:var(--card)}
+.more{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:15px;margin-top:auto;padding-top:8px}
+.more .ic{width:18px;height:18px;transition:transform .2s}
+a.card:hover .more .ic{transform:translateX(3px)}
+.price{font-size:32px;font-weight:800;letter-spacing:-.03em;line-height:1.1;font-variant-numeric:tabular-nums}
+.price small{display:block;font-size:14px;font-weight:500;letter-spacing:0;margin-top:4px;opacity:.8}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.checks li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.checks .ic{width:20px;height:20px;color:var(--ok);margin-top:2px}
+.hero-card{padding:40px;justify-content:space-between;gap:32px}
+.hero-card h1{font-size:56px;line-height:1.04;letter-spacing:-.035em;font-weight:800;text-wrap:balance}
+.hero-card .lede{font-size:19px;color:var(--ink-2);max-width:30em;margin-top:16px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.store{justify-content:space-between;min-height:152px}
+.store h3{margin-top:auto}
+
+/* Formulario del estimador y rastreo */
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field label{font-weight:600;font-size:14px}
+.input{display:flex;align-items:center;min-height:48px;background:var(--field);border:1px solid transparent;border-radius:12px;padding:0 14px}
+.input:focus-within{border-color:var(--focus);outline:2px solid var(--focus);background:var(--card)}
+.input span{color:var(--ink-2);margin-right:6px}
+.input .suf{margin:0 0 0 6px}
+.input input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:500 16px var(--font);outline:none;font-variant-numeric:tabular-nums}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.est-total{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
+.est-total span{font-weight:600;color:var(--ink-2);font-size:14px}
+.est-total strong{font-size:44px;line-height:1;letter-spacing:-.04em;font-weight:800;font-variant-numeric:tabular-nums}
+
+/* Pasos */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:2px 16px;padding:14px 0;border-top:1px solid var(--line)}
+.steps li:first-child{border-top:0;padding-top:0}
+.steps li::before{content:counter(s);grid-row:1/3;width:40px;height:40px;border-radius:12px;background:var(--field);display:grid;place-items:center;font-weight:700}
+.steps b{font-weight:600}
+.steps span{color:var(--ink-2);font-size:15px}
+
+/* Casillero */
+.addr{background:var(--card);color:var(--ink);border-radius:16px;padding:20px;font-size:16px;line-height:1.6}
+.addr small{display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:4px}
+.addr b{font-size:20px;letter-spacing:-.01em}
+
+/* Casillero */
+.casillero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center;padding:40px}
+.casillero h2{font-size:40px;line-height:1.08;letter-spacing:-.03em;font-weight:800}
+.casillero p{font-size:18px;max-width:28em}
+
+/* Pie */
+footer{margin:32px 0 24px}
+.foot{background:var(--dark);color:var(--dark-ink);border-radius:var(--r);padding:40px;display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:32px}
+.foot .brand{color:#fff}
+.foot h4{margin:0 0 12px;font-size:14px;font-weight:600;color:#fff}
+.foot a{display:block;text-decoration:none;padding:4px 0;color:var(--dark-ink-2);font-size:15px}
+.foot a:hover{color:#fff}
+.foot p{color:var(--dark-ink-2);font-size:15px}
+.legal{grid-column:1/-1;border-top:1px solid var(--dark-line);padding-top:20px;font-size:14px;color:var(--dark-ink-2);display:flex;gap:20px;flex-wrap:wrap}
+.legal a{display:inline;padding:0}
+
+/* Tablet: 2 columnas */
+@media (max-width:1024px){
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .c-3,.c-4{grid-column:span 1}
+  .c-5,.c-6,.c-7,.c-12{grid-column:1/-1}
+  .r-2{grid-row:auto}
+  .bento>.c-4:last-child:nth-child(odd){grid-column:1/-1}
+  .links{display:none;position:absolute;top:100%;left:20px;right:20px;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px}
+  .links.open{display:flex}
+  .menu-btn{display:grid}
+  .foot{grid-template-columns:1fr 1fr}
+  .hero-card h1{font-size:44px}
+  .casillero{grid-template-columns:minmax(0,1fr);padding:32px;gap:24px}.casillero h2{font-size:32px}
+}
+/* Celular: 1 columna */
+@media (max-width:640px){
+  .bento{grid-template-columns:minmax(0,1fr)}
+  .c-3,.c-4{grid-column:1/-1}
+  .card{padding:24px}
+  .hero-card{padding:28px}.hero-card h1{font-size:38px}.hero-card .lede{font-size:17px}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .store{min-height:0;flex-direction:row;align-items:center;justify-content:flex-start;gap:16px}
+  .store h3{margin:0}
+  .foot{grid-template-columns:1fr;padding:28px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.card>.btn.block:last-child{margin-top:auto}

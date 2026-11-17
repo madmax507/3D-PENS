@@ -1,56 +1,76 @@
 <!doctype html>
 <html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F3F1EE" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1F1A14" media="(prefers-color-scheme: dark)">
 <title>Contacto · PTY Shopping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-.ways{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.way{background:var(--surface);border-radius:var(--r-lg);padding:20px;text-decoration:none;display:flex;flex-direction:column;gap:2px}
-.way b{font-size:17px}
-.way span{font-size:15px;color:var(--text-2)}
-.way.primary{background:var(--accent);color:var(--accent-ink)}
-.way.primary span{color:inherit;opacity:.85}
-.way.primary .icon{background:rgba(255,255,255,.18);color:inherit}
-.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:16px}
-.split form{display:flex;flex-direction:column;gap:14px}
-@media (max-width:860px){.ways{grid-template-columns:minmax(0,1fr)}.split{grid-template-columns:minmax(0,1fr)}}
+.ways{display:grid;grid-template-columns:1.4fr 1fr 1fr;border:var(--rule);background:var(--paper);color:var(--ink)}
+.ways a,.ways div{padding:26px 24px;text-decoration:none;border-left:var(--hair);display:flex;flex-direction:column;gap:4px}
+.ways>:first-child{border-left:0}
+.ways .wa{background:var(--red);color:#fff}
+.ways .wa:hover{background:#B00000}
+.ways a:not(.wa):hover{background:var(--ink);color:var(--paper)}
+.ways span{font-size:15px;font-weight:600;opacity:.85}
+.ways b{font:900 28px/1.1 var(--display);font-stretch:112%;font-variant-numeric:tabular-nums}
+.ways .wa b{font-size:34px}
+.visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:var(--rule);border-top:0;background:var(--kraft);color:var(--ink)}
+.visit>div{padding:24px}
+.visit>div+div{border-left:var(--hair)}
+.visit b{display:block;font:800 20px var(--display);font-stretch:112%;margin-bottom:4px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px;margin-top:56px;align-items:start}
+.split form{display:flex;flex-direction:column;gap:16px}
+.faq h2{font-size:36px;font-stretch:112%;font-weight:800;margin-bottom:12px}
+details{border-top:var(--hair)}
+details:last-child{border-bottom:var(--hair)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 0;font-weight:800;font-size:18px;min-height:44px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:none;width:14px;height:14px;border-right:3px solid currentColor;border-bottom:3px solid currentColor;transform:rotate(45deg) translate(-3px,-3px);transition:transform .15s}
+details[open] summary::after{transform:rotate(-135deg) translate(-3px,-3px)}
+details p{margin:0 0 18px;color:var(--on-ground-2);max-width:36em}
+@media (max-width:900px){.ways{grid-template-columns:minmax(0,1fr)}.ways a,.ways div{border-left:0;border-top:var(--hair)}.ways>:first-child{border-top:0}
+ .visit{grid-template-columns:minmax(0,1fr)}.visit>div+div{border-left:0;border-top:var(--hair)}.split{grid-template-columns:minmax(0,1fr)}}
 </style></head>
 <body data-page="contacto">
-<main class="wrap">
-  <section class="hero">
-    <p class="eyebrow">Contacto</p>
-    <h1>¿Quieres hacer un pedido?</h1>
-    <p class="lede">Escríbenos por donde te quede más fácil. Respondemos más rápido por WhatsApp.</p>
-  </section>
+<main id="main" class="wrap">
+  <header class="page-head">
+    <h1 class="wide">¿Qué quieres traer?</h1>
+    <p>Mándanos el enlace o la foto del producto. Por WhatsApp respondemos más rápido.</p>
+  </header>
 
   <div class="ways">
-    <a class="way primary" href="#"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg></div><b>WhatsApp</b><span>+507 6722-7766</span></a>
-    <a class="way" href="tel:+5073999876"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></div><b>Llámanos</b><span>+507 399-9876</span></a>
-    <a class="way" href="mailto:info@ptyshopping.com"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></div><b>Correo</b><span>info@ptyshopping.com</span></a>
-    <a class="way" href="#"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></div><b>Oficina</b><span>Bethania, Los Ángeles, calle 63B, casa 28, local 1</span></a>
+    <a class="wa" href="#"><span>Escríbenos por WhatsApp</span><b>6722-7766</b></a>
+    <a href="tel:+5073999876"><span>Llámanos</span><b>399-9876</b></a>
+    <a href="mailto:info@ptyshopping.com"><span>Escríbenos un correo</span><b style="font-size:20px">info@ptyshopping.com</b></a>
+  </div>
+  <div class="visit">
+    <div><b>Visítanos</b>Bethania, Los Ángeles, calle 63B, casa 28, local 1. Ciudad de Panamá.</div>
+    <div><b>Retiro de paquetes</b>Pasa por la oficina o pide entrega a domicilio. También enviamos al interior.</div>
   </div>
 
   <div class="split">
-    <section class="card">
-      <h2>Escríbenos</h2>
-      <p class="sub">Si es un pedido, incluye el enlace del producto.</p>
+    <section class="sheet sheet-pad">
+      <h2>Mándanos un mensaje</h2>
+      <p class="sub">Si es un pedido, pega el enlace del producto en el mensaje.</p>
       <form onsubmit="return false">
-        <div class="row"><div class="field"><label for="cn">Nombre</label><div class="input"><input id="cn" autocomplete="name"></div></div>
-          <div class="field"><label for="ce">Correo</label><div class="input"><input id="ce" type="email" autocomplete="email"></div></div></div>
-        <div class="field"><label for="cs">Tema</label><div class="input"><select id="cs"><option>Quiero cotizar un producto</option><option>Estado de mi paquete</option><option>Pagos y abonos</option><option>Otro</option></select></div></div>
-        <div class="field"><label for="cm">Mensaje</label><textarea id="cm" class="input" placeholder="Hola, quiero traer…"></textarea></div>
+        <div class="row"><div class="field"><label for="cn">Nombre</label><div class="input"><input id="cn" name="name" autocomplete="name"></div></div>
+          <div class="field"><label for="ce">Correo</label><div class="input"><input id="ce" name="email" type="email" autocomplete="email" spellcheck="false"></div></div></div>
+        <div class="field"><label for="cs">Tema</label><div class="input"><select id="cs" name="tema"><option>Quiero cotizar un producto</option><option>Dónde está mi paquete</option><option>Pagos y abonos</option><option>Otro tema</option></select></div></div>
+        <div class="field"><label for="cm">Mensaje</label><textarea id="cm" name="mensaje" class="input" placeholder="Hola, quiero traer…"></textarea></div>
         <button class="btn block">Enviar mensaje</button>
       </form>
     </section>
 
-    <section class="card" id="faq">
-      <h2 style="margin-bottom:8px">Preguntas frecuentes</h2>
-      <details open><summary>¿En qué tiendas puedo comprar?</summary><p>En cualquier tienda en línea del mundo. Las de Estados Unidos suelen tener mejores ofertas; escríbenos y te ayudamos a elegir.</p></details>
-      <details><summary>¿Cuánto tarda en llegar?</summary><p>Entre 3 días y 2 semanas desde Norteamérica. Desde Europa o Asia puede tardar más de un mes. Todos los tiempos son estimados.</p></details>
-      <details><summary>¿Cómo se calcula el peso?</summary><p>En libras, redondeado al siguiente entero: 2.2 lb se cobra como 3 lb. Si pesa más de lo estimado, pagas la diferencia en la oficina.</p></details>
+    <section class="faq" id="faq" aria-labelledby="fq">
+      <h2 id="fq">Preguntas frecuentes</h2>
+      <details open><summary>¿En qué tiendas puedo comprar?</summary><p>En cualquier tienda en línea del mundo. Las de Estados Unidos suelen tener mejores precios; si no sabes dónde, te ayudamos a buscar.</p></details>
+      <details><summary>¿Cuánto tarda en llegar?</summary><p>Entre 3 días y 2 semanas desde Norteamérica. Desde Europa o Asia puede pasar de un mes. Si lo necesitas antes, pide a la tienda un envío más rápido.</p></details>
+      <details><summary>¿Cómo se calcula el peso?</summary><p>En libras, redondeando al siguiente número entero: 2.2 lb se cobra como 3 lb. Si al llegar pesa más, pagas la diferencia en la oficina.</p></details>
       <details><summary>¿Qué pasa si mi compra no llega?</summary><p>Si la tienda no envía el producto en 2 meses, te devolvemos todo lo que abonaste.</p></details>
-      <details><summary>¿Qué no pueden traer?</summary><p>Inflamables y cargas peligrosas, alimentos, plantas, animales, algunas medicinas, aerosoles, artículos con aire comprimido y armas de fuego. Cremas y perfumes: consúltanos.</p></details>
-      <details><summary>¿Cómo puedo pagar?</summary><p>Tarjeta de crédito o débito, depósito, transferencia, efectivo, Yappy y cheque. Los cheques devueltos tienen un cargo de $30.00.</p></details>
+      <details><summary>¿Qué no pueden traer?</summary><p>Inflamables y carga peligrosa, alimentos, plantas, animales, algunas medicinas, aerosoles, artículos con aire comprimido y armas de fuego. Para cremas y perfumes, pregúntanos antes.</p></details>
+      <details><summary>¿Cómo puedo pagar?</summary><p>Tarjeta de crédito o débito, depósito, transferencia, efectivo, Yappy o cheque. Un cheque devuelto tiene un cargo de $30.00.</p></details>
     </section>
   </div>
 </main>

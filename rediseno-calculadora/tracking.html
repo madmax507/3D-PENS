@@ -1,75 +1,91 @@
 <!doctype html>
 <html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F3F1EE" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1F1A14" media="(prefers-color-scheme: dark)">
 <title>Rastrear paquete · PTY Shopping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-.track-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:end}
-.result{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;margin-top:16px}
-.status-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-.status-head h2{font-size:24px;margin:6px 0 2px}
-.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;color:var(--text-2)}
-.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:22px 0 8px}
-.progress i{height:6px;border-radius:3px;background:var(--line)}
-.progress i.on{background:var(--ok)}
-.timeline{list-style:none;margin:20px 0 0;padding:0}
-.timeline li{position:relative;padding:0 0 22px 32px}
-.timeline li::before{content:"";position:absolute;left:6px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--line);box-shadow:0 0 0 4px var(--surface)}
-.timeline li::after{content:"";position:absolute;left:11px;top:20px;bottom:-4px;width:2px;background:var(--line)}
-.timeline li:last-child::after{display:none}
-.timeline li.done::before{background:var(--ok)}
-.timeline li.now::before{background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent)}
-.timeline b{display:block;font-size:15px}
-.timeline span{font-size:13px;color:var(--text-2)}
-.timeline li.next b{color:var(--text-2);font-weight:500}
-dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:15px}
-dt{color:var(--text-2)} dd{margin:0;text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
-@media (max-width:860px){.track-form,.result{grid-template-columns:minmax(0,1fr)}}
+.paste{display:grid;grid-template-columns:minmax(0,1fr) auto;border:var(--rule);background:var(--paper)}
+.paste .input{border:0;min-height:72px;padding:0 22px}
+.paste .input input{font-size:22px;font-weight:700;letter-spacing:.04em}
+.paste .btn{min-height:72px;border:0;border-left:var(--rule);padding:0 36px;font-size:18px}
+.lbl-big{display:block;font-weight:800;margin-bottom:10px}
+.result{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:32px;margin-top:40px;align-items:start}
+.status{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end;padding:24px 28px;border-bottom:var(--rule)}
+.status h2{font-size:34px;font-stretch:125%;font-weight:900}
+.status .eta{text-align:right;font-size:14px;font-weight:600}
+.status .eta b{display:block;font:900 22px var(--display);font-stretch:112%}
+.state{display:inline-block;background:var(--ok);color:#fff;font-weight:700;font-size:14px;padding:3px 10px;margin-bottom:10px}
+.map{padding:30px 28px 10px}
+.map .stops li:nth-child(-n+3)::before{background:var(--ink)}
+.map .stops li:nth-child(3)::before{background:var(--red);border-color:var(--red);box-shadow:0 0 0 6px color-mix(in srgb,var(--red) 22%,transparent)}
+.map .stops li:last-child::before{background:var(--paper);border-color:var(--ink)}
+.map .stops li:nth-child(n+4) b{color:var(--ink-2);font-weight:600}
+.log{list-style:none;margin:0;padding:8px 28px 24px}
+.log li{display:grid;grid-template-columns:170px 1fr;gap:16px;padding:14px 0;border-top:var(--hair);font-size:15px}
+.log time{font-weight:700;font-variant-numeric:tabular-nums}
+.log span{color:var(--ink-2);display:block;font-size:14px}
+dl.det{margin:0;display:grid;grid-template-columns:auto 1fr}
+dl.det dt,dl.det dd{padding:12px 18px;border-bottom:var(--hair);margin:0;font-size:15px}
+dl.det dt{color:var(--ink-2)} dl.det dd{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.help{margin-top:20px}
+.help p{color:var(--on-ground-2);margin:6px 0 14px}
+@media (max-width:900px){.paste{grid-template-columns:minmax(0,1fr)}.paste .btn{border-left:0;border-top:var(--rule)}
+ .result{grid-template-columns:minmax(0,1fr)}.status h2{font-size:26px}.status .eta{text-align:left}.log li{grid-template-columns:minmax(0,1fr);gap:2px}.map .stops{gap:18px}}
 </style></head>
 <body data-page="tracking">
-<main class="wrap">
-  <section class="hero">
-    <p class="eyebrow">Tracking</p>
-    <h1>¿Dónde está mi paquete?</h1>
-    <p class="lede">Escribe el número de guía que te dio la tienda donde compraste.</p>
-  </section>
+<main id="main" class="wrap">
+  <header class="page-head">
+    <h1 class="wide">¿Dónde está mi paquete?</h1>
+    <p>Escribe el número de guía que te dio la tienda donde compraste.</p>
+  </header>
 
-  <section class="card">
-    <form class="track-form" onsubmit="return false">
-      <div class="field"><label for="trk">Número de tracking o guía</label>
-        <div class="input"><input id="trk" value="1Z999AA10123456784" autocapitalize="characters" spellcheck="false"></div></div>
+  <form onsubmit="return false">
+    <label class="lbl-big" for="trk">Número de guía o tracking</label>
+    <div class="paste">
+      <div class="input"><input id="trk" name="tracking" value="1Z999AA10123456784" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
       <button class="btn">Rastrear</button>
-    </form>
-  </section>
+    </div>
+  </form>
 
   <div class="result" aria-live="polite">
-    <section class="card">
-      <div class="status-head">
-        <div><span class="pill ok">En camino</span><h2>En tránsito a Panamá</h2><span class="code">1Z999AA10123456784 · UPS → PTY Shopping</span></div>
-        <span class="hint" style="text-align:right">Llegada estimada<br><b style="font-size:17px;color:var(--text)">jueves 20 de nov.</b></span>
+    <section class="label" aria-labelledby="st">
+      <div class="status">
+        <div><span class="state">En camino</span><h2 id="st">Volando a Panamá</h2></div>
+        <div class="eta">Llega a Bethania<b>jueves 20 de nov.</b></div>
       </div>
-      <div class="progress" aria-label="Paso 3 de 4"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
-      <ol class="timeline">
-        <li class="now"><b>Salió de Miami en vuelo a Panamá</b><span>Hoy, 6:40 a. m. · Miami, FL</span></li>
-        <li class="done"><b>Recibido en nuestra bodega de Miami</b><span>Lun 17 nov., 2:15 p. m. · Peso: 3 lb</span></li>
-        <li class="done"><b>La tienda envió tu paquete</b><span>Vie 14 nov. · UPS Ground</span></li>
-        <li class="next"><b>En aduana de Panamá</b><span>Siguiente paso</span></li>
-        <li class="next"><b>Listo para retirar en Bethania</b><span>Te avisamos por WhatsApp</span></li>
+      <div class="map">
+        <ol class="stops">
+          <li><b>La tienda</b><span>Vie 14 nov.</span></li>
+          <li><b>Bodega Miami</b><span>Lun 17 nov.</span></li>
+          <li><b>Vuelo a Panamá</b><span>Hoy</span></li>
+          <li><b>Aduana</b><span>Siguiente</span></li>
+          <li><b>Listo para retirar</b><span>Te avisamos</span></li>
+        </ol>
+      </div>
+      <ol class="log" reversed>
+        <li><time>Hoy, 6:40 a. m.</time><div>Salió de Miami en vuelo a Panamá<span>Miami, FL</span></div></li>
+        <li><time>Lun 17 nov., 2:15 p. m.</time><div>Recibido y pesado en nuestra bodega<span>Miami, FL. Peso: 3 lb</span></div></li>
+        <li><time>Vie 14 nov.</time><div>La tienda entregó tu paquete a UPS<span>Guía 1Z999AA10123456784</span></div></li>
       </ol>
     </section>
-    <aside class="stack">
-      <section class="card">
-        <h3 style="margin-bottom:14px">Detalles</h3>
-        <dl><dt>Peso cobrado</dt><dd>3 lb</dd><dt>Servicio</dt><dd>Completo aéreo</dd><dt>Saldo pendiente</dt><dd>$42.33</dd></dl>
+
+    <aside>
+      <section class="label" aria-labelledby="dt">
+        <div class="label-top"><div class="svc" id="dt">Detalles<b>Completo aéreo</b></div><div class="code" aria-hidden="true">A</div></div>
+        <dl class="det"><dt>Peso cobrado</dt><dd>3 lb</dd><dt>Total</dt><dd>$105.82</dd><dt>Abonado</dt><dd>$63.49</dd><dt>Por pagar al retirar</dt><dd>$42.33</dd></dl>
+        <div class="barcode"><div data-barcode="1Z999AA10123456784" style="flex:1"></div><span>1Z999AA1</span></div>
       </section>
-      <section class="card">
-        <h3>¿Algo no cuadra?</h3>
-        <p class="sub" style="margin:4px 0 14px">Si tu paquete lleva más de 2 semanas sin moverse, escríbenos.</p>
-        <a class="btn ghost block" href="contacto.html">Contactar soporte</a>
-      </section>
+      <div class="help">
+        <b>¿Lleva más de 2 semanas sin moverse?</b>
+        <p>Escríbenos con tu número de guía y lo reclamamos a la tienda.</p>
+        <a class="btn line block" href="contacto.html">Contactar a soporte</a>
+      </div>
     </aside>
   </div>
-  <p class="hint" style="margin-top:12px">Datos de ejemplo para la maqueta.</p>
+  <p class="on-ground-2" style="font-size:14px;margin-top:16px">Datos de ejemplo para la maqueta.</p>
 </main>
 <script src="site.js"></script>
 </body></html>

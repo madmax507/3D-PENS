@@ -1,122 +1,171 @@
 <!doctype html>
 <html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5F5F7" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <title>PTY Shopping · Compra en USA, recíbelo en Panamá</title>
-<link rel="stylesheet" href="styles.css">
-<style>
-.home-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;padding:56px 0 8px}
-.home-hero h1{font-size:56px}
-.hero-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
-.quick{background:var(--surface);border-radius:var(--r-lg);padding:24px}
-.quick h2{font-size:17px;margin:0 0 14px}
-.quick form{display:flex;flex-direction:column;gap:12px}
-.mini-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:12px;border-top:1px solid var(--line)}
-.mini-total strong{font-size:30px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.stores{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;align-items:center;color:var(--text-2);font-size:14px}
-.stores span.pill{font-size:13px;padding:6px 12px;background:var(--surface);color:var(--text)}
-.svc .card{display:flex;flex-direction:column}
-.svc .card p{color:var(--text-2);font-size:15px;margin:6px 0 16px;flex:1}
-.svc .card .from{font-size:13px;color:var(--text-2)}
-.svc .card .from b{font-size:22px;color:var(--text);font-variant-numeric:tabular-nums}
-.svc .card .link{margin-top:14px}
-.benefits{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px}
-.benefits li{display:flex;gap:12px;font-size:15px}
-.benefits li::before{content:"✓";color:var(--ok);font-weight:700}
-@media (max-width:860px){.home-hero{grid-template-columns:1fr;padding-top:24px}.home-hero h1{font-size:36px}.benefits{grid-template-columns:1fr}}
-</style></head>
-<body data-page="inicio">
-<main class="wrap">
-  <section class="home-hero">
-    <div>
-      <p class="eyebrow">Compras por internet desde 2008</p>
-      <h1>Compra en USA.<br>Recíbelo en Panamá.</h1>
-      <p class="lede">Nosotros compramos por ti, sin tarjeta de crédito y sin mensualidades. Pagas un abono y el resto cuando llega tu paquete.</p>
-      <div class="hero-actions">
-        <a class="btn" href="cuenta.html#registro">Obtener casillero gratis</a>
-        <a class="btn ghost" href="calculadoras.html">Calcular un envío</a>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="bento.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L22 7H6"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.4 8 8 9 4.6-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 9l1.5-5h13L20 9v1a3 3 0 0 1-6 0 3 3 0 0 1-4 0 3 3 0 0 1-6 0z"/><path d="M5 12v8h14v-8"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="nav"><div class="nav-in">
+  <a class="brand" href="index.html" translate="no" aria-label="PTY Shopping, inicio">PTY <b>Shopping</b></a>
+  <nav class="links" id="links" aria-label="Principal">
+    <a href="index.html" aria-current="page">Inicio</a><a href="tienda.html">Tienda</a><a href="calculadoras.html">Calculadoras</a><a href="tracking.html">Tracking</a><a href="contacto.html">Contacto</a>
+  </nav>
+  <a class="btn sm" href="cuenta.html">Mi casillero</a>
+  <button class="menu-btn" type="button" id="menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="links"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button>
+</div></header>
+
+<main id="main" class="wrap">
+
+  <!-- Fila 1: hero + tiendas -->
+  <section class="bento" aria-label="Inicio">
+    <div class="card hero-card c-6 r-2">
+      <div>
+        <h1>Compra en USA. Recíbelo en Panamá.</h1>
+        <p class="lede">Compramos por ti en cualquier tienda de Estados Unidos, sin tarjeta y sin mensualidad. Pagas un abono y el resto cuando lo retiras.</p>
       </div>
-      <div class="stores">Compramos en <span class="pill">Amazon</span><span class="pill">eBay</span><span class="pill">Newegg</span><span class="pill">RockAuto</span><span class="pill">y cualquier tienda</span></div>
-    </div>
-    <aside class="quick" aria-labelledby="qt">
-      <h2 id="qt">¿Dónde está mi paquete?</h2>
-      <form onsubmit="location.href='tracking.html';return false">
-        <div class="field"><label for="trk">Número de tracking</label>
-          <div class="input"><input id="trk" placeholder="Ej. 1Z999AA10123456784"></div></div>
-        <button class="btn block">Rastrear</button>
-      </form>
-      <div style="height:20px"></div>
-      <h2>Estimado rápido · aéreo</h2>
-      <form onsubmit="return false">
-        <div class="row" style="grid-template-columns:1fr 1fr">
-          <div class="field"><label for="ql">Peso</label><div class="input"><input id="ql" inputmode="decimal" value="3"><span class="suf">lb</span></div></div>
-          <div class="field"><label for="qp">Precio</label><div class="input"><span>$</span><input id="qp" inputmode="decimal" value="79.99"></div></div>
+      <div style="display:grid;gap:24px">
+        <div class="actions">
+          <a class="btn" href="cuenta.html#registro">Abrir mi casillero gratis</a>
+          <a class="btn line" href="calculadoras.html">Calcular un envío</a>
         </div>
-        <div class="mini-total"><span class="hint">Total aproximado</span><strong id="qt-out">$0.00</strong></div>
-        <a class="link" href="calculadoras.html">Ver desglose completo →</a>
-      </form>
-    </aside>
+        <ul class="checks">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Sin mensualidad ni contrato</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Si la tienda no envía en 2 meses, te devolvemos el abono</li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="card store c-3" href="tienda.html"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-store"/></svg></span><div><h3>Amazon</h3><p class="muted">De todo</p></div></a>
+    <a class="card store c-3" href="tienda.html"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg></span><div><h3>eBay</h3><p class="muted">Nuevo y usado</p></div></a>
+    <a class="card store c-3" href="tienda.html"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg></span><div><h3>Newegg</h3><p class="muted">Computadoras</p></div></a>
+    <a class="card store c-3" href="tienda.html"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg></span><div><h3>RockAuto</h3><p class="muted">Repuestos de auto</p></div></a>
   </section>
 
-  <h2 class="section">Elige cómo quieres traerlo</h2>
-  <p class="section-sub">Tres servicios, según quién hace la compra.</p>
-  <div class="cols-3 svc">
-    <article class="card">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L22 7H6"/></svg></div>
+  <!-- Fila 2: servicios -->
+  <section class="bento" aria-label="Servicios">
+    <a class="card dark c-4" href="calculadoras.html#ca">
+      <span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg></span>
       <h3>Servicio completo</h3>
-      <p>Nos pasas el enlace, cotizamos, pagas el abono y nosotros compramos y lo traemos. Incluye rastreo, reclamos al vendedor y garantía de entrega en 2 meses o te devolvemos el abono.</p>
-      <span class="from">Servicio de compra <b>4% + $4</b></span>
-      <a class="link" href="calculadoras.html">Calcular →</a>
-    </article>
-    <article class="card">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div>
-      <h3>Traída</h3>
-      <p>Tú compras y lo envías a tu casillero gratis en Miami. Lo traemos, lo liberamos de aduana y lo retiras o te lo llevamos. Sin servicio de compra.</p>
-      <span class="from">Aéreo desde <b>$2.70/lb</b></span>
-      <a class="link" href="calculadoras.html#ta">Calcular →</a>
-    </article>
-    <article class="card">
-      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+      <p class="muted">Nos mandas el enlace y nosotros compramos, rastreamos y reclamamos al vendedor. Tú solo esperas.</p>
+      <div class="price num">4% + $4<small>más $2.70 por libra</small></div>
+      <span class="more">Calcular<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
+    <a class="card c-4" href="calculadoras.html#ta">
+      <span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg></span>
+      <h3>Servicio de traída</h3>
+      <p class="muted">Tú compras y lo envías a tu casillero gratis en Miami. Nosotros lo traemos y lo liberamos de aduana.</p>
+      <div class="price num">$2.70/lb<small>aéreo · marítimo $10 por pie³</small></div>
+      <span class="more">Calcular<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
+    <a class="card soft c-4" href="calculadoras.html#sc">
+      <span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg></span>
       <h3>Solo compra</h3>
-      <p>Compramos por ti y lo enviamos a otra dirección dentro de Estados Unidos. Sin envío ni impuesto aduanal.</p>
-      <span class="from">Servicio de compra <b>4% + $4.20</b></span>
-      <a class="link" href="calculadoras.html#sc">Calcular →</a>
-    </article>
-  </div>
+      <p class="muted">Compramos por ti y lo enviamos a otra dirección dentro de Estados Unidos. Sin impuesto aduanal.</p>
+      <div class="price num">4% + $4.20<small>sobre el total de la compra</small></div>
+      <span class="more">Calcular<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
+  </section>
 
-  <h2 class="section">Así funciona</h2>
-  <p class="section-sub">De la tienda a tus manos en 3 días a 2 semanas desde Norteamérica.</p>
-  <div class="cols-2">
-    <div class="card">
-      <ol class="steps">
-        <li><b>Envíanos el enlace</b><span>Por WhatsApp, teléfono o correo. Te cotizamos con la calculadora.</span></li>
-        <li><b>Paga el abono</b><span>Desde 60% del total, en efectivo, tarjeta, transferencia o Yappy.</span></li>
-        <li><b>Rastrea tu paquete</b><span>Te avisamos en cada paso y puedes verlo en Tracking.</span></li>
-        <li style="margin:0"><b>Retira o recibe en casa</b><span>En Bethania, a domicilio o al interior del país.</span></li>
+  <!-- Fila 3: rastreo, pagos, calidad, ofertas -->
+  <section class="bento" aria-label="Más servicios">
+    <form class="card c-3" onsubmit="location.href='tracking.html';return false" aria-labelledby="tr-t">
+      <span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span>
+      <h3 id="tr-t">Rastrea tu paquete</h3>
+      <div class="field"><label for="trk">Número de guía</label><div class="input"><input id="trk" name="tracking" autocomplete="off" spellcheck="false" placeholder="1Z999AA1…"></div></div>
+      <button class="btn block sm">Rastrear</button>
+    </form>
+    <div class="card c-3">
+      <span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg></span>
+      <h3>Pagos flexibles</h3>
+      <p class="muted">Tarjeta, transferencia, depósito, efectivo o Yappy. Abono desde 60%.</p>
+    </div>
+    <div class="card c-3">
+      <span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span>
+      <h3>Calidad garantizada</h3>
+      <p class="muted">Seguimiento en cada parada y reclamos al vendedor incluidos en el servicio completo.</p>
+    </div>
+    <a class="card accent c-3" href="tienda.html">
+      <span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg></span>
+      <h3>Ofertas de la semana</h3>
+      <p class="muted">Productos ya con el precio puesto en Panamá.</p>
+      <span class="more">Ver ofertas<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
+  </section>
+
+  <!-- Fila 4: estimador + cómo funciona -->
+  <section class="bento" aria-label="Estimado y proceso">
+    <form class="card c-5" onsubmit="return false" aria-labelledby="es-t">
+      <h2 id="es-t">Estimado rápido</h2>
+      <p class="muted">Servicio completo por avión, desde Miami.</p>
+      <div class="row">
+        <div class="field"><label for="ql">Peso</label><div class="input"><input id="ql" name="peso" inputmode="decimal" autocomplete="off" value="3"><span class="suf">lb</span></div></div>
+        <div class="field"><label for="qp">Precio + shipping</label><div class="input"><span>$</span><input id="qp" name="precio" inputmode="decimal" autocomplete="off" value="85.98"></div></div>
+      </div>
+      <div class="est-total" aria-live="polite"><span>Total puesto en Panamá</span><strong id="qt-out">$0.00</strong></div>
+      <a class="btn line block" href="calculadoras.html">Ver el desglose completo</a>
+    </form>
+    <div class="card c-7">
+      <h2>Así funciona</h2>
+      <p class="muted">De 3 días a 2 semanas desde Norteamérica.</p>
+      <ol class="steps" style="margin-top:8px">
+        <li><b>Mándanos el enlace</b><span>Por WhatsApp, teléfono o correo. Te cotizamos.</span></li>
+        <li><b>Paga el abono</b><span>Desde 60% del total.</span></li>
+        <li><b>Seguimos tu paquete</b><span>Te avisamos en cada parada: bodega en Miami, vuelo y aduana.</span></li>
+        <li><b>Retíralo o recíbelo en casa</b><span>En Bethania, a domicilio o al interior del país.</span></li>
       </ol>
     </div>
-    <div class="card">
-      <h3 style="margin-bottom:16px">Por qué PTY Shopping</h3>
-      <ul class="benefits">
-        <li>Sin mensualidad ni contrato</li>
-        <li>No necesitas tarjeta de crédito</li>
-        <li>Si la tienda no envía en 2 meses, te devolvemos el abono</li>
-        <li>Descuento por libra después de 20 lb</li>
-        <li>Peso volumen solo si supera 20 lb al peso real</li>
-        <li>Envíos al interior del país</li>
-      </ul>
-    </div>
-  </div>
+  </section>
 
-  <div style="height:56px"></div>
-  <section class="band">
-    <div><h2>Tu casillero en Miami, gratis</h2><p>Una dirección en Estados Unidos para todas tus compras. Sin mensualidades.</p></div>
-    <a class="btn" href="cuenta.html#registro">Crear mi casillero</a>
+  <!-- Fila 5: casillero -->
+  <section class="bento" aria-label="Casillero">
+    <div class="card dark c-12 casillero">
+      <div style="display:grid;gap:16px;justify-items:start">
+        <h2>Tu dirección en Miami, gratis.</h2>
+        <p class="muted">Úsala como dirección de envío en cualquier tienda de Estados Unidos. Cuando llegue a la bodega, lo traemos.</p>
+        <a class="btn" href="cuenta.html#registro">Abrir mi casillero</a>
+      </div>
+      <div class="addr" aria-label="Ejemplo de dirección de casillero">
+        <small>Enviar a</small>
+        <b>Tu nombre</b><br>Casillero PTY-00000<br>Dirección de la bodega en Miami<br>Miami, FL 33100, USA
+      </div>
+    </div>
   </section>
 </main>
-<script src="site.js"></script>
+
+<footer class="wrap"><div class="foot">
+  <div><a class="brand" href="index.html" translate="no">PTY <b>Shopping</b></a>
+    <p style="margin-top:12px;max-width:24em">Compramos por ti en cualquier tienda del mundo y lo traemos a Panamá. Desde 2008.</p></div>
+  <div><h4>Servicios</h4><a href="calculadoras.html">Calculadoras</a><a href="tracking.html">Rastrear paquete</a><a href="tienda.html">Tienda</a><a href="contacto.html#faq">Preguntas frecuentes</a></div>
+  <div><h4>Tu cuenta</h4><a href="cuenta.html">Iniciar sesión</a><a href="cuenta.html#registro">Casillero gratis</a></div>
+  <div><h4>Oficina</h4><p>Bethania, Los Ángeles<br>Calle 63B, casa 28, local 1</p><a href="tel:+5073999876">507 399-9876</a><a href="mailto:info@ptyshopping.com">info@ptyshopping.com</a></div>
+  <div class="legal"><span>© 2026 PTY Shopping</span><a href="https://www.facebook.com/ptyshoppingpa/">Facebook</a><a href="https://www.instagram.com/ptyshoppingpa/">Instagram</a></div>
+</div></footer>
+
 <script>
+const fmt=new Intl.NumberFormat('es-US',{style:'currency',currency:'USD'});
 function q(){const l=Math.ceil(parseFloat(ql.value)||0),p=parseFloat(qp.value)||0;
- const air=l*2.7,imp=p?Math.max(1,p*.05):0,srv=p?p*.04+4:0;document.getElementById('qt-out').textContent='$'+(p+air+imp+srv).toFixed(2);}
+ const air=l*2.7,imp=p?Math.max(1,p*.05):0,srv=p?p*.04+4:0;document.getElementById('qt-out').textContent=fmt.format(p+air+imp+srv);}
 [ql,qp].forEach(i=>i.addEventListener('input',q));q();
+const m=document.getElementById('menu'),l=document.getElementById('links');
+m.addEventListener('click',()=>{const o=l.classList.toggle('open');m.setAttribute('aria-expanded',o);});
 </script>
 </body></html>
