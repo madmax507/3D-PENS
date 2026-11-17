@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi cuenta · PTY Shopping</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.acc{display:grid;grid-template-columns:440px minmax(0,1fr);gap:24px;align-items:start;padding-top:48px}
+.acc form{display:flex;flex-direction:column;gap:14px}
+.acc .seg{margin-bottom:22px}
+.addr{background:var(--ink);color:var(--ink-text);border-radius:var(--r-lg);padding:28px}
+.addr h2{font-size:28px;letter-spacing:-.015em;margin:4px 0 8px}
+.addr p{color:color-mix(in srgb,var(--ink-text) 72%,transparent);margin:0}
+.label-card{background:#FFFFFF;color:#1D1D1F;border-radius:14px;padding:18px 20px;margin:22px 0 18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1.7;
+  border-left:6px solid var(--accent)}
+.label-card b{font-family:var(--font);font-size:12px;letter-spacing:.06em;color:#5E5E63;display:block;margin-bottom:4px}
+.perks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.perks li{display:flex;gap:10px;font-size:15px}
+.perks li::before{content:"✓";color:#32D74B;font-weight:700}
+.forgot{display:flex;justify-content:space-between;align-items:center}
+[hidden]{display:none!important}
+@media (max-width:860px){.acc{grid-template-columns:minmax(0,1fr);padding-top:24px}}
+</style></head>
+<body data-page="cuenta">
+<main class="wrap">
+  <div class="acc">
+    <section class="card">
+      <div class="seg" role="tablist">
+        <button role="tab" id="t-in" aria-selected="true">Iniciar sesión</button>
+        <button role="tab" id="t-up" aria-selected="false">Crear cuenta</button>
+      </div>
+      <form id="f-in" onsubmit="return false">
+        <h1 style="font-size:28px;margin:0">Bienvenido de nuevo</h1>
+        <div class="field"><label for="u">Correo o usuario</label><div class="input"><input id="u" autocomplete="username" inputmode="email"></div></div>
+        <div class="field"><label for="pw">Contraseña</label><div class="input"><input id="pw" type="password" autocomplete="current-password"></div></div>
+        <div class="forgot"><label class="check"><input type="checkbox" checked> Mantener sesión</label><a class="link" href="#">¿Olvidaste tu contraseña?</a></div>
+        <button class="btn block">Iniciar sesión</button>
+      </form>
+      <form id="f-up" onsubmit="return false" hidden>
+        <h1 style="font-size:28px;margin:0">Tu casillero gratis</h1>
+        <div class="row"><div class="field"><label for="n">Nombre</label><div class="input"><input id="n" autocomplete="given-name"></div></div>
+          <div class="field"><label for="a">Apellido</label><div class="input"><input id="a" autocomplete="family-name"></div></div></div>
+        <div class="field"><label for="e">Correo electrónico</label><div class="input"><input id="e" type="email" autocomplete="email"></div></div>
+        <div class="field"><label for="t">WhatsApp <span class="hint">· para avisarte cuando llegue</span></label><div class="input"><span>+507</span><input id="t" type="tel" autocomplete="tel-national"></div></div>
+        <div class="field"><label for="p2">Contraseña <span class="hint">· mínimo 8 caracteres</span></label><div class="input"><input id="p2" type="password" autocomplete="new-password"></div></div>
+        <button class="btn block">Crear mi casillero</button>
+        <p class="hint" style="margin:0">Sin mensualidades ni contrato.</p>
+      </form>
+    </section>
+
+    <aside class="addr">
+      <p style="font-size:14px;font-weight:600;color:#FF6B60">Casillero en Miami</p>
+      <h2>Tu dirección en Estados Unidos</h2>
+      <p>Úsala como dirección de envío en Amazon, eBay o cualquier tienda. Nosotros la traemos a Panamá.</p>
+      <div class="label-card" aria-label="Ejemplo de dirección de casillero">
+        <b>ENVIAR A</b>
+        TU NOMBRE · PTY-00000<br>
+        Dirección de bodega en Miami<br>
+        Miami, FL 33100 · USA
+      </div>
+      <ul class="perks">
+        <li>Gratis, sin mensualidades</li>
+        <li>Te avisamos por WhatsApp en cada paso</li>
+        <li>Retira en Bethania o recibe a domicilio</li>
+      </ul>
+    </aside>
+  </div>
+</main>
+<script src="site.js"></script>
+<script>
+const set=up=>{document.getElementById('t-in').setAttribute('aria-selected',!up);document.getElementById('t-up').setAttribute('aria-selected',up);
+  document.getElementById('f-in').hidden=up;document.getElementById('f-up').hidden=!up;};
+document.getElementById('t-in').onclick=()=>set(false);document.getElementById('t-up').onclick=()=>set(true);
+if(location.hash==='#registro')set(true);
+</script>
+</body></html>

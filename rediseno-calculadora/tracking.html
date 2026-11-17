@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rastrear paquete · PTY Shopping</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.track-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:end}
+.result{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;margin-top:16px}
+.status-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.status-head h2{font-size:24px;margin:6px 0 2px}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;color:var(--text-2)}
+.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:22px 0 8px}
+.progress i{height:6px;border-radius:3px;background:var(--line)}
+.progress i.on{background:var(--ok)}
+.timeline{list-style:none;margin:20px 0 0;padding:0}
+.timeline li{position:relative;padding:0 0 22px 32px}
+.timeline li::before{content:"";position:absolute;left:6px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--line);box-shadow:0 0 0 4px var(--surface)}
+.timeline li::after{content:"";position:absolute;left:11px;top:20px;bottom:-4px;width:2px;background:var(--line)}
+.timeline li:last-child::after{display:none}
+.timeline li.done::before{background:var(--ok)}
+.timeline li.now::before{background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent)}
+.timeline b{display:block;font-size:15px}
+.timeline span{font-size:13px;color:var(--text-2)}
+.timeline li.next b{color:var(--text-2);font-weight:500}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:15px}
+dt{color:var(--text-2)} dd{margin:0;text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+@media (max-width:860px){.track-form,.result{grid-template-columns:minmax(0,1fr)}}
+</style></head>
+<body data-page="tracking">
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Tracking</p>
+    <h1>¿Dónde está mi paquete?</h1>
+    <p class="lede">Escribe el número de guía que te dio la tienda donde compraste.</p>
+  </section>
+
+  <section class="card">
+    <form class="track-form" onsubmit="return false">
+      <div class="field"><label for="trk">Número de tracking o guía</label>
+        <div class="input"><input id="trk" value="1Z999AA10123456784" autocapitalize="characters" spellcheck="false"></div></div>
+      <button class="btn">Rastrear</button>
+    </form>
+  </section>
+
+  <div class="result" aria-live="polite">
+    <section class="card">
+      <div class="status-head">
+        <div><span class="pill ok">En camino</span><h2>En tránsito a Panamá</h2><span class="code">1Z999AA10123456784 · UPS → PTY Shopping</span></div>
+        <span class="hint" style="text-align:right">Llegada estimada<br><b style="font-size:17px;color:var(--text)">jueves 20 de nov.</b></span>
+      </div>
+      <div class="progress" aria-label="Paso 3 de 4"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <ol class="timeline">
+        <li class="now"><b>Salió de Miami en vuelo a Panamá</b><span>Hoy, 6:40 a. m. · Miami, FL</span></li>
+        <li class="done"><b>Recibido en nuestra bodega de Miami</b><span>Lun 17 nov., 2:15 p. m. · Peso: 3 lb</span></li>
+        <li class="done"><b>La tienda envió tu paquete</b><span>Vie 14 nov. · UPS Ground</span></li>
+        <li class="next"><b>En aduana de Panamá</b><span>Siguiente paso</span></li>
+        <li class="next"><b>Listo para retirar en Bethania</b><span>Te avisamos por WhatsApp</span></li>
+      </ol>
+    </section>
+    <aside class="stack">
+      <section class="card">
+        <h3 style="margin-bottom:14px">Detalles</h3>
+        <dl><dt>Peso cobrado</dt><dd>3 lb</dd><dt>Servicio</dt><dd>Completo aéreo</dd><dt>Saldo pendiente</dt><dd>$42.33</dd></dl>
+      </section>
+      <section class="card">
+        <h3>¿Algo no cuadra?</h3>
+        <p class="sub" style="margin:4px 0 14px">Si tu paquete lleva más de 2 semanas sin moverse, escríbenos.</p>
+        <a class="btn ghost block" href="contacto.html">Contactar soporte</a>
+      </section>
+    </aside>
+  </div>
+  <p class="hint" style="margin-top:12px">Datos de ejemplo para la maqueta.</p>
+</main>
+<script src="site.js"></script>
+</body></html>

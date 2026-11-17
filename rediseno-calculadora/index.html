@@ -1,209 +1,122 @@
 <!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calculadora Aérea · PTY Shopping</title>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PTY Shopping · Compra en USA, recíbelo en Panamá</title>
+<link rel="stylesheet" href="styles.css">
 <style>
-:root{
-  --bg:#F5F5F7; --surface:#FFFFFF; --text:#1D1D1F; --text-2:#5E5E63; --line:#D9D9DE;
-  --field:#F2F2F5; --accent:#D70015; --accent-ink:#FFFFFF; --ok:#1B7F3B; --focus:#0A66D9;
-  --tag:#FFF4E5; --tag-ink:#8A4B00;
-  --r-lg:20px; --r-md:12px;
-  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-}
-@media (prefers-color-scheme:dark){:root{
-  --bg:#000000; --surface:#1C1C1E; --text:#F5F5F7; --text-2:#A1A1A6; --line:#3A3A3C;
-  --field:#2C2C2E; --accent:#FF453A; --accent-ink:#000000; --ok:#32D74B; --focus:#4C9BFF;
-  --tag:#3A2A12; --tag-ink:#FFC56B;
-}}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--bg);color:var(--text);font:17px/1.47 var(--font);-webkit-font-smoothing:antialiased}
-a{color:inherit}
-/* Header */
-.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 80%,transparent);
-  backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
-.nav-in{max-width:1080px;margin:0 auto;padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between}
-.brand{font-weight:700;font-size:19px;letter-spacing:-.01em;text-decoration:none}
-.brand b{color:var(--accent)}
-.links{display:flex;gap:28px;font-size:14px;color:var(--text-2)}
-.links a{text-decoration:none}.links a[aria-current]{color:var(--text);font-weight:600}
-.menu-btn{display:none;width:44px;height:44px;border:0;background:none;color:var(--text);font-size:22px}
-/* Hero */
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-.hero{padding:48px 0 28px}
-.eyebrow{font-size:14px;font-weight:600;color:var(--accent);margin:0 0 6px}
-h1{font-size:44px;line-height:1.08;letter-spacing:-.02em;margin:0 0 10px;font-weight:700}
-.lede{font-size:19px;color:var(--text-2);margin:0;max-width:560px}
-/* Grid */
-.grid{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start;padding-bottom:64px}
-.card{background:var(--surface);border-radius:var(--r-lg);padding:24px}
-.card+.card{margin-top:16px}
-.card h2{font-size:20px;margin:0 0 4px;letter-spacing:-.01em}
-.card .sub{font-size:15px;color:var(--text-2);margin:0 0 18px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field{display:flex;flex-direction:column;gap:6px}
-.field label{font-size:15px;font-weight:600}
-.field .hint{font-size:13px;color:var(--text-2);font-weight:400}
-.input{display:flex;align-items:center;height:48px;background:var(--field);border-radius:var(--r-md);padding:0 14px;border:2px solid transparent}
-.input:focus-within{border-color:var(--focus);background:var(--surface)}
-.input span{color:var(--text-2);font-size:17px;margin-right:6px}
-.input input{flex:1;min-width:0;border:0;background:none;font:inherit;color:var(--text);outline:none;font-variant-numeric:tabular-nums}
-.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--field);border-radius:10px;padding:3px;height:48px}
-.seg button{border:0;border-radius:8px;background:none;font:600 15px var(--font);color:var(--text-2);cursor:pointer}
-.seg button[aria-pressed="true"]{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.12)}
-.weight{display:grid;grid-template-columns:1fr 160px;gap:14px;align-items:end}
-/* Receipt (signature) */
-.receipt{position:sticky;top:76px;background:var(--surface);border-radius:var(--r-lg);overflow:hidden}
-.r-head{padding:20px 24px 14px;display:flex;justify-content:space-between;align-items:center}
-.r-head h2{font-size:17px;margin:0}
-.route{font-size:13px;font-weight:600;color:var(--text-2);display:flex;gap:6px;align-items:center}
-.route i{font-style:normal;background:var(--field);border-radius:6px;padding:2px 7px;color:var(--text)}
-.lines{list-style:none;margin:0;padding:0 24px}
-.lines li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
-.lines li span:first-child{color:var(--text-2)}
-.lines li small{display:block;font-size:12px;color:var(--text-2);opacity:.85}
-.num{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
-.perf{height:16px;margin:6px 0 0;background:radial-gradient(circle at 8px 8px,var(--bg) 7px,transparent 7.5px) -8px 0/24px 16px repeat-x}
-.total{padding:16px 24px 6px;display:flex;justify-content:space-between;align-items:baseline}
-.total span{font-size:15px;font-weight:600}
-.total strong{font-size:40px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.deposit{margin:8px 24px 0;background:var(--tag);color:var(--tag-ink);border-radius:var(--r-md);padding:12px 14px;display:flex;justify-content:space-between;font-size:15px}
-.deposit b{font-variant-numeric:tabular-nums}
-.cta{display:block;margin:18px 24px 10px;height:50px;line-height:50px;text-align:center;border-radius:var(--r-md);
-  background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:17px;text-decoration:none}
-.cta-2{display:block;text-align:center;font-size:15px;color:var(--focus);padding:10px 0 20px;text-decoration:none;font-weight:600}
-.note{font-size:13px;color:var(--text-2);margin:0;padding:0 24px 22px}
-.how{font-size:15px;color:var(--text-2)}
-.how ol{margin:8px 0 0;padding-left:20px}.how li{margin:4px 0}
-footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color:var(--text-2)}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
-/* Mobile bar */
-.bar{display:none}
-@media (max-width:860px){
-  .links{display:none}.menu-btn{display:block}
-  .hero{padding:24px 0 16px} h1{font-size:32px} .lede{font-size:17px}
-  .grid{grid-template-columns:1fr;padding-bottom:120px}
-  .receipt{position:static}
-  .row{grid-template-columns:minmax(0,1fr)} .weight{grid-template-columns:minmax(0,1fr) 140px}
-  .card{padding:20px}
-  .bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;align-items:center;justify-content:space-between;gap:12px;
-    padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--surface) 96%,transparent);
-    backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:1px solid var(--line)}
-  .bar small{display:block;font-size:12px;color:var(--text-2)}
-  .bar strong{font-size:22px;font-variant-numeric:tabular-nums}
-  .bar a{height:44px;line-height:44px;padding:0 18px;border-radius:22px;background:var(--accent);color:var(--accent-ink);font-weight:600;text-decoration:none;font-size:15px}
-}
-@media (prefers-reduced-motion:no-preference){.num,.total strong{transition:color .2s}}
-</style>
-</head>
-<body>
-<header class="nav"><div class="nav-in">
-  <a class="brand" href="#">PTY <b>Shopping</b></a>
-  <nav class="links" aria-label="Principal">
-    <a href="#">Inicio</a><a href="#">Tienda</a><a href="#" aria-current="page">Calculadoras</a><a href="#">Tracking</a><a href="#">Cuenta</a><a href="#">Contacto</a>
-  </nav>
-  <button class="menu-btn" aria-label="Abrir menú">☰</button>
-</div></header>
-
+.home-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:center;padding:56px 0 8px}
+.home-hero h1{font-size:56px}
+.hero-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.quick{background:var(--surface);border-radius:var(--r-lg);padding:24px}
+.quick h2{font-size:17px;margin:0 0 14px}
+.quick form{display:flex;flex-direction:column;gap:12px}
+.mini-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:12px;border-top:1px solid var(--line)}
+.mini-total strong{font-size:30px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stores{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;align-items:center;color:var(--text-2);font-size:14px}
+.stores span.pill{font-size:13px;padding:6px 12px;background:var(--surface);color:var(--text)}
+.svc .card{display:flex;flex-direction:column}
+.svc .card p{color:var(--text-2);font-size:15px;margin:6px 0 16px;flex:1}
+.svc .card .from{font-size:13px;color:var(--text-2)}
+.svc .card .from b{font-size:22px;color:var(--text);font-variant-numeric:tabular-nums}
+.svc .card .link{margin-top:14px}
+.benefits{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px}
+.benefits li{display:flex;gap:12px;font-size:15px}
+.benefits li::before{content:"✓";color:var(--ok);font-weight:700}
+@media (max-width:860px){.home-hero{grid-template-columns:1fr;padding-top:24px}.home-hero h1{font-size:36px}.benefits{grid-template-columns:1fr}}
+</style></head>
+<body data-page="inicio">
 <main class="wrap">
-  <section class="hero">
-    <p class="eyebrow">Servicio completo aéreo · USA → Panamá</p>
-    <h1>¿Cuánto te cuesta traerlo?</h1>
-    <p class="lede">Escribe el peso y el precio que ves en la tienda. El total se calcula al instante.</p>
+  <section class="home-hero">
+    <div>
+      <p class="eyebrow">Compras por internet desde 2008</p>
+      <h1>Compra en USA.<br>Recíbelo en Panamá.</h1>
+      <p class="lede">Nosotros compramos por ti, sin tarjeta de crédito y sin mensualidades. Pagas un abono y el resto cuando llega tu paquete.</p>
+      <div class="hero-actions">
+        <a class="btn" href="cuenta.html#registro">Obtener casillero gratis</a>
+        <a class="btn ghost" href="calculadoras.html">Calcular un envío</a>
+      </div>
+      <div class="stores">Compramos en <span class="pill">Amazon</span><span class="pill">eBay</span><span class="pill">Newegg</span><span class="pill">RockAuto</span><span class="pill">y cualquier tienda</span></div>
+    </div>
+    <aside class="quick" aria-labelledby="qt">
+      <h2 id="qt">¿Dónde está mi paquete?</h2>
+      <form onsubmit="location.href='tracking.html';return false">
+        <div class="field"><label for="trk">Número de tracking</label>
+          <div class="input"><input id="trk" placeholder="Ej. 1Z999AA10123456784"></div></div>
+        <button class="btn block">Rastrear</button>
+      </form>
+      <div style="height:20px"></div>
+      <h2>Estimado rápido · aéreo</h2>
+      <form onsubmit="return false">
+        <div class="row" style="grid-template-columns:1fr 1fr">
+          <div class="field"><label for="ql">Peso</label><div class="input"><input id="ql" inputmode="decimal" value="3"><span class="suf">lb</span></div></div>
+          <div class="field"><label for="qp">Precio</label><div class="input"><span>$</span><input id="qp" inputmode="decimal" value="79.99"></div></div>
+        </div>
+        <div class="mini-total"><span class="hint">Total aproximado</span><strong id="qt-out">$0.00</strong></div>
+        <a class="link" href="calculadoras.html">Ver desglose completo →</a>
+      </form>
+    </aside>
   </section>
 
-  <div class="grid">
-    <form id="calc" autocomplete="off" onsubmit="return false">
-      <section class="card" aria-labelledby="t1">
-        <h2 id="t1">Tu paquete</h2>
-        <p class="sub">Redondeamos al siguiente número entero de libras.</p>
-        <div class="weight">
-          <div class="field">
-            <label for="peso">Peso</label>
-            <div class="input"><input id="peso" inputmode="decimal" value="3" aria-describedby="t1"></div>
-          </div>
-          <div class="field">
-            <label id="ul">Unidad</label>
-            <div class="seg" role="group" aria-labelledby="ul">
-              <button type="button" data-u="lb" aria-pressed="true">Libras</button>
-              <button type="button" data-u="kg" aria-pressed="false">Kilos</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="card" aria-labelledby="t2">
-        <h2 id="t2">Tu compra</h2>
-        <p class="sub">Copia los montos de la página donde compras.</p>
-        <div class="row">
-          <div class="field"><label for="precio">Precio del artículo</label>
-            <div class="input"><span>$</span><input id="precio" inputmode="decimal" value="79.99"></div></div>
-          <div class="field"><label for="ship">Envío dentro de USA <span class="hint">· shipping</span></label>
-            <div class="input"><span>$</span><input id="ship" inputmode="decimal" value="5.99"></div></div>
-          <div class="field"><label for="tax">Tax <span class="hint">· si la tienda lo cobra</span></label>
-            <div class="input"><span>$</span><input id="tax" inputmode="decimal" placeholder="0.00"></div></div>
-          <div class="field"><label for="seg">Seguro <span class="hint">· si la tienda lo cobra</span></label>
-            <div class="input"><span>$</span><input id="seg" inputmode="decimal" placeholder="0.00"></div></div>
-        </div>
-      </section>
-
-      <section class="card how" aria-labelledby="t3">
-        <h2 id="t3" style="color:var(--text)">Cómo funciona</h2>
-        <ol>
-          <li>Compras en cualquier tienda de USA, o nosotros compramos por ti.</li>
-          <li>Pagas un abono mínimo para confirmar el pedido.</li>
-          <li>Lo traemos por aéreo a Panamá y pagas el resto al recibirlo.</li>
-        </ol>
-      </section>
-    </form>
-
-    <aside class="receipt" aria-labelledby="rt" aria-live="polite">
-      <div class="r-head"><h2 id="rt">Tu estimado</h2><span class="route"><i>MIA</i>→<i>PTY</i></span></div>
-      <ul class="lines">
-        <li><span>Artículo + envío USA</span><span class="num" id="o-sub"></span></li>
-        <li><span>Envío aéreo a Panamá<small id="o-lbs"></small></span><span class="num" id="o-air"></span></li>
-        <li><span>Impuesto de valorización<small>5% · mínimo $1.00</small></span><span class="num" id="o-imp"></span></li>
-        <li><span>Servicio de compra<small>4% + $4.00</small></span><span class="num" id="o-srv"></span></li>
-        <li><span>Tax y seguro</span><span class="num" id="o-ts"></span></li>
-      </ul>
-      <div class="perf" aria-hidden="true"></div>
-      <div class="total"><span>Total estimado</span><strong id="o-tot"></strong></div>
-      <div class="deposit"><span id="o-dl">Abono mínimo</span><b id="o-dep"></b></div>
-      <a class="cta" href="#">Pedir por WhatsApp</a>
-      <a class="cta-2" href="#">Hablar con un asesor · 399-9876</a>
-      <p class="note">Valor aproximado. El costo final depende del peso real del paquete al llegar a nuestra bodega en Miami.</p>
-    </aside>
+  <h2 class="section">Elige cómo quieres traerlo</h2>
+  <p class="section-sub">Tres servicios, según quién hace la compra.</p>
+  <div class="cols-3 svc">
+    <article class="card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L22 7H6"/></svg></div>
+      <h3>Servicio completo</h3>
+      <p>Nos pasas el enlace, cotizamos, pagas el abono y nosotros compramos y lo traemos. Incluye rastreo, reclamos al vendedor y garantía de entrega en 2 meses o te devolvemos el abono.</p>
+      <span class="from">Servicio de compra <b>4% + $4</b></span>
+      <a class="link" href="calculadoras.html">Calcular →</a>
+    </article>
+    <article class="card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div>
+      <h3>Traída</h3>
+      <p>Tú compras y lo envías a tu casillero gratis en Miami. Lo traemos, lo liberamos de aduana y lo retiras o te lo llevamos. Sin servicio de compra.</p>
+      <span class="from">Aéreo desde <b>$2.70/lb</b></span>
+      <a class="link" href="calculadoras.html#ta">Calcular →</a>
+    </article>
+    <article class="card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+      <h3>Solo compra</h3>
+      <p>Compramos por ti y lo enviamos a otra dirección dentro de Estados Unidos. Sin envío ni impuesto aduanal.</p>
+      <span class="from">Servicio de compra <b>4% + $4.20</b></span>
+      <a class="link" href="calculadoras.html#sc">Calcular →</a>
+    </article>
   </div>
+
+  <h2 class="section">Así funciona</h2>
+  <p class="section-sub">De la tienda a tus manos en 3 días a 2 semanas desde Norteamérica.</p>
+  <div class="cols-2">
+    <div class="card">
+      <ol class="steps">
+        <li><b>Envíanos el enlace</b><span>Por WhatsApp, teléfono o correo. Te cotizamos con la calculadora.</span></li>
+        <li><b>Paga el abono</b><span>Desde 60% del total, en efectivo, tarjeta, transferencia o Yappy.</span></li>
+        <li><b>Rastrea tu paquete</b><span>Te avisamos en cada paso y puedes verlo en Tracking.</span></li>
+        <li style="margin:0"><b>Retira o recibe en casa</b><span>En Bethania, a domicilio o al interior del país.</span></li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:16px">Por qué PTY Shopping</h3>
+      <ul class="benefits">
+        <li>Sin mensualidad ni contrato</li>
+        <li>No necesitas tarjeta de crédito</li>
+        <li>Si la tienda no envía en 2 meses, te devolvemos el abono</li>
+        <li>Descuento por libra después de 20 lb</li>
+        <li>Peso volumen solo si supera 20 lb al peso real</li>
+        <li>Envíos al interior del país</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="height:56px"></div>
+  <section class="band">
+    <div><h2>Tu casillero en Miami, gratis</h2><p>Una dirección en Estados Unidos para todas tus compras. Sin mensualidades.</p></div>
+    <a class="btn" href="cuenta.html#registro">Crear mi casillero</a>
+  </section>
 </main>
-
-<div class="bar" aria-hidden="true"><div><small>Total estimado</small><strong id="b-tot"></strong></div><a href="#">Pedir por WhatsApp</a></div>
-
-<footer><div class="wrap"><span>© 2026 PTY Shopping · Bethania, Ciudad de Panamá</span><span>info@ptyshopping.com · Tel. 507 399-9876</span></div></footer>
-
+<script src="site.js"></script>
 <script>
-const $=id=>document.getElementById(id), n=id=>parseFloat(($(id).value||'').replace(',','.'))||0;
-const fmt=v=>'$'+v.toFixed(2);
-let unit='lb';
-document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{unit=b.dataset.u;
-  document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));calc();});
-function calc(){
-  const peso=n('peso'), p=n('precio'), s=n('ship'), t=n('tax'), sg=n('seg');
-  const lbs=Math.ceil(unit==='lb'?peso:peso*2.2);
-  const air=lbs*2.70;
-  let imp=(p+s)*0.05; imp = imp===0?0:Math.max(1,imp);
-  const base=p+s+t+sg, srv=base>0?base*0.04+4:0;
-  const tot=p+s+air+imp+srv+t+sg;
-  const pct=tot<=250?.6:tot<=500?.7:tot<=1000?.8:.9;
-  $('o-sub').textContent=fmt(p+s); $('o-air').textContent=fmt(air);
-  $('o-lbs').textContent=lbs+' lb × $2.70'; $('o-imp').textContent=fmt(imp);
-  $('o-srv').textContent=fmt(srv); $('o-ts').textContent=fmt(t+sg);
-  $('o-tot').textContent=fmt(tot); $('b-tot').textContent=fmt(tot);
-  $('o-dl').textContent='Abono mínimo ('+Math.round(pct*100)+'%)'; $('o-dep').textContent=fmt(tot*pct);
-}
-document.querySelectorAll('input').forEach(i=>i.addEventListener('input',calc)); calc();
+function q(){const l=Math.ceil(parseFloat(ql.value)||0),p=parseFloat(qp.value)||0;
+ const air=l*2.7,imp=p?Math.max(1,p*.05):0,srv=p?p*.04+4:0;document.getElementById('qt-out').textContent='$'+(p+air+imp+srv).toFixed(2);}
+[ql,qp].forEach(i=>i.addEventListener('input',q));q();
 </script>
-</body>
-</html>
+</body></html>

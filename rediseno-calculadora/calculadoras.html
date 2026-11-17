@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadoras · PTY Shopping</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;align-items:start}
+.tabs{margin-bottom:16px}
+.tabs .seg button{flex-direction:column;gap:0;line-height:1.2;padding:8px 6px}
+.tabs .seg small{font-weight:500;font-size:12px;color:var(--text-2)}
+.weight{display:grid;grid-template-columns:minmax(0,1fr) 160px;gap:14px;align-items:end}
+@media (max-width:860px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .tabs .seg{grid-auto-flow:row;grid-template-columns:1fr 1fr}
+  .tabs .seg button:first-child{grid-column:1/-1}
+  .weight{grid-template-columns:minmax(0,1fr) 140px}
+}
+</style></head>
+<body data-page="calc" class="has-bar">
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Calculadoras · USA → Panamá</p>
+    <h1>¿Cuánto te cuesta traerlo?</h1>
+    <p class="lede">Elige el servicio, escribe los datos de la tienda y el total se calcula al instante.</p>
+  </section>
+
+  <div class="tabs" role="tablist" aria-label="Servicio">
+    <div class="seg">
+      <button role="tab" data-t="ca" aria-selected="true">Servicio completo<small>Aéreo</small></button>
+      <button role="tab" data-t="ta" aria-selected="false">Traída<small>Aéreo por peso</small></button>
+      <button role="tab" data-t="tv" aria-selected="false">Traída<small>Por volumen</small></button>
+      <button role="tab" data-t="tm" aria-selected="false">Traída<small>Marítima</small></button>
+      <button role="tab" data-t="sc" aria-selected="false">Solo compra<small>Dentro de USA</small></button>
+    </div>
+  </div>
+
+  <div class="grid">
+    <form id="calc" autocomplete="off" onsubmit="return false" class="stack">
+      <section class="card" data-show="ca ta">
+        <h2>Tu paquete</h2>
+        <p class="sub">Redondeamos al siguiente número entero de libras.</p>
+        <div class="weight">
+          <div class="field"><label for="peso">Peso</label><div class="input"><input id="peso" inputmode="decimal" value="3"></div></div>
+          <div class="field"><span class="lbl" id="ul">Unidad</span>
+            <div class="seg" role="group" aria-labelledby="ul">
+              <button type="button" data-u="lb" aria-pressed="true">Libras</button>
+              <button type="button" data-u="kg" aria-pressed="false">Kilos</button>
+            </div></div>
+        </div>
+      </section>
+
+      <section class="card" data-show="tv tm">
+        <h2>Medidas de la caja</h2>
+        <p class="sub" data-show="tv">En pulgadas. Cobramos por volumen solo si supera en más de 20 lb al peso real.</p>
+        <p class="sub" data-show="tm">En pulgadas. Cobramos por pie cúbico, redondeado hacia arriba.</p>
+        <div class="row-3">
+          <div class="field"><label for="alto">Alto</label><div class="input"><input id="alto" inputmode="decimal" value="20"><span class="suf">in</span></div></div>
+          <div class="field"><label for="ancho">Ancho</label><div class="input"><input id="ancho" inputmode="decimal" value="16"><span class="suf">in</span></div></div>
+          <div class="field"><label for="largo">Largo</label><div class="input"><input id="largo" inputmode="decimal" value="12"><span class="suf">in</span></div></div>
+        </div>
+        <div class="field" data-show="tv" style="margin-top:14px"><label for="real">Peso real</label><div class="input"><input id="real" inputmode="decimal" value="15"><span class="suf">lb</span></div></div>
+      </section>
+
+      <section class="card" data-show="ca sc">
+        <h2>Tu compra</h2>
+        <p class="sub">Copia los montos de la página donde compras.</p>
+        <div class="row">
+          <div class="field"><label for="precio">Precio del artículo</label><div class="input"><span>$</span><input id="precio" inputmode="decimal" value="79.99"></div></div>
+          <div class="field"><label for="ship">Envío dentro de USA <span class="hint">· shipping</span></label><div class="input"><span>$</span><input id="ship" inputmode="decimal" value="5.99"></div></div>
+          <div class="field"><label for="tax">Tax <span class="hint">· si la tienda lo cobra</span></label><div class="input"><span>$</span><input id="tax" inputmode="decimal" placeholder="0.00"></div></div>
+          <div class="field"><label for="seg">Seguro <span class="hint">· si la tienda lo cobra</span></label><div class="input"><span>$</span><input id="seg" inputmode="decimal" placeholder="0.00"></div></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 id="how-t">Cómo funciona</h2>
+        <ol class="steps" style="margin-top:14px">
+          <li><b>Calcula y escríbenos</b><span>Mándanos el enlace del producto por WhatsApp y confirmamos el precio.</span></li>
+          <li><b>Paga el abono</b><span>El porcentaje sube con el total: 60% hasta $250, 70% hasta $500, 80% hasta $1,000 y 90% después.</span></li>
+          <li style="margin:0"><b>Paga el resto al recibirlo</b><span>Si pesa más de lo estimado, pagas la diferencia en la oficina.</span></li>
+        </ol>
+      </section>
+    </form>
+
+    <aside class="receipt" aria-labelledby="rt" aria-live="polite">
+      <div class="r-head"><h2 id="rt">Tu estimado</h2><span class="route"><i>MIA</i>→<i>PTY</i></span></div>
+      <ul class="lines" id="lines"></ul>
+      <div class="perf" aria-hidden="true"></div>
+      <div class="total"><span id="tot-l">Total estimado</span><strong id="o-tot"></strong></div>
+      <div class="deposit" id="dep-box"><span id="o-dl">Abono mínimo</span><b id="o-dep"></b></div>
+      <a class="btn" href="#">Pedir por WhatsApp</a>
+      <a class="link" href="tel:+5073999876">Hablar con un asesor · 399-9876</a>
+      <p class="note" id="note">Valor aproximado. El costo final depende del peso real del paquete al llegar a nuestra bodega en Miami.</p>
+    </aside>
+  </div>
+</main>
+<div class="bar" aria-hidden="true"><div><small>Total estimado</small><strong id="b-tot"></strong></div><a href="#">Pedir por WhatsApp</a></div>
+<script src="site.js"></script>
+<script>
+const $=id=>document.getElementById(id), n=id=>parseFloat(($(id).value||'').replace(',','.'))||0, fmt=v=>'$'+v.toFixed(2);
+let unit='lb', tab=(location.hash||'#ca').slice(1);
+document.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>{unit=b.dataset.u;document.querySelectorAll('[data-u]').forEach(x=>x.setAttribute('aria-pressed',x===b));calc();});
+document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{tab=b.dataset.t;history.replaceState(null,'','#'+tab);setTab();});
+function setTab(){
+  document.querySelectorAll('[data-t]').forEach(x=>x.setAttribute('aria-selected',x.dataset.t===tab));
+  document.querySelectorAll('[data-show]').forEach(el=>el.style.display=el.dataset.show.split(' ').includes(tab)?'':'none');
+  calc();
+}
+const line=(l,v,s)=>`<li><span>${l}${s?`<small>${s}</small>`:''}</span><span class="num">${fmt(v)}</span></li>`;
+const pctOf=t=>t<=250?.6:t<=500?.7:t<=1000?.8:.9;
+function calc(){
+  let rows='',tot=0,dep=true,note='Valor aproximado. El costo final depende del peso real del paquete al llegar a nuestra bodega en Miami.',label='Total estimado';
+  const lbs=Math.ceil(unit==='lb'?n('peso'):n('peso')*2.2);
+  const p=n('precio'),s=n('ship'),t=n('tax'),sg=n('seg'),base=p+s+t+sg;
+  if(tab==='ca'){
+    const air=lbs*2.7; let imp=(p+s)*.05; imp=imp===0?0:Math.max(1,imp); const srv=base>0?base*.04+4:0;
+    rows=line('Artículo + envío USA',p+s)+line('Envío aéreo a Panamá',air,lbs+' lb × $2.70')+line('Impuesto de valorización',imp,'5% · mínimo $1.00')+line('Servicio de compra',srv,'4% + $4.00')+line('Tax y seguro',t+sg);
+    tot=p+s+air+imp+srv+t+sg;
+  } else if(tab==='ta'){
+    const air=lbs*2.7, imp=lbs*.5;
+    rows=line('Envío aéreo a Panamá',air,lbs+' lb × $2.70')+line('Impuesto de valorización',imp,lbs+' lb × $0.50');
+    tot=air+imp;
+  } else if(tab==='tv'){
+    const vol=Math.ceil(n('alto')*n('ancho')*n('largo')/166), real=n('real'), diff=vol-real, byVol=diff>20;
+    rows=`<li><span>Peso volumen<small>alto × ancho × largo ÷ 166</small></span><span class="num">${vol} lb</span></li>`+
+         `<li><span>Diferencia con el peso real</span><span class="num">${diff} lb</span></li>`+
+         line(byVol?'Cobro por volumen':'Cobro por peso real',byVol?vol*1.8:real*2.7,byVol?vol+' lb × $1.80':real+' lb × $2.70');
+    tot=byVol?vol*1.8:real*2.7; label='Costo de traída'; note='No incluye impuestos. Se cobra por volumen solo cuando supera en más de 20 lb al peso real.';
+  } else if(tab==='tm'){
+    const ft=Math.ceil(n('alto')*n('ancho')*n('largo')/1728);
+    rows=`<li><span>Volumen<small>alto × ancho × largo ÷ 1,728</small></span><span class="num">${ft} ft³</span></li>`+line('Flete marítimo',ft*10,ft+' ft³ × $10.00');
+    tot=ft*10; label='Costo de traída'; note='No incluye impuestos. El tiempo de llegada por vía marítima es mayor que el aéreo.';
+  } else if(tab==='sc'){
+    const srv=base>0?base*.04+4.2:0;
+    rows=line('Artículo + envío USA',p+s)+line('Tax y seguro',t+sg)+line('Servicio de compra',srv,'4% + $4.20');
+    tot=base+srv; note='Lo enviamos a la dirección que nos indiques dentro de Estados Unidos. No incluye envío a Panamá.';
+  }
+  $('lines').innerHTML=rows; $('o-tot').textContent=fmt(tot); $('b-tot').textContent=fmt(tot); $('tot-l').textContent=label; $('note').textContent=note;
+  const pc=pctOf(tot); $('o-dl').textContent='Abono mínimo ('+Math.round(pc*100)+'%)'; $('o-dep').textContent=fmt(tot*pc);
+  document.querySelector('.route').style.visibility=tab==='sc'?'hidden':'';
+  $('dep-box').style.display=(tab==='ca'||tab==='sc')?'':'none';
+}
+document.querySelectorAll('input').forEach(i=>i.addEventListener('input',calc));
+if(!['ca','ta','tv','tm','sc'].includes(tab))tab='ca'; setTab();
+</script>
+</body></html>
